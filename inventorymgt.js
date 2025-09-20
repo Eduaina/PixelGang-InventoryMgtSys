@@ -41,3 +41,40 @@ const updateStock = () => {}
  
 const generateReport = () => {}
  
+
+
+
+// Function to add products
+function addProducts(id, name, price, quantity){
+let product = inventory.find(function(item){
+    return item.id === id;
+  });
+if (product){
+product.quality = product.quantity + quantity;
+console.log(quantity, "quantites added to" ,product.name);
+} else{
+inventory.push({id: id, name: name, price: price, quantity: quantity});
+console.log(name, "has been added to inventory");
+}
+}
+
+addProducts();
+
+// Function to remove products
+function removeProducts(id, name, price, quantity){
+let product = inventory.find(function(item){
+    return item.id === id;
+  });
+ if (!product){
+    console.log("Product is not in inventory");
+  } else{
+    if (product.quantity < quantity){
+      console.log("Not enough stock to remove!");
+    } else{
+      product.quantity -= quantity;
+      console.log(quantity, "units deducted from", product.name);
+    }
+  }
+}
+
+removeProducts();
