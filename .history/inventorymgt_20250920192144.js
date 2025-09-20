@@ -37,6 +37,8 @@ const addProducts = () => { }
 
 const removeProducts = () => { }
 
+const updateStock = () => { }
+
 const generateReport = () => { }
 
 
@@ -81,6 +83,14 @@ removeProducts();
 
 
 // stock update.
+
+
+// let lowstock = (stocks) {
+//     for (let i = 0; i < inventory.length; ){
+//         if ()
+//     }
+// } in progress.
+
 
 const updateStock = (id, changeInQuantity) => {
   // looping through the list of my array
