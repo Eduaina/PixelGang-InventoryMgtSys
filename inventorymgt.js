@@ -101,3 +101,69 @@ console.log(updateStock(8, 3))
 
 
 
+// Remove Product
+
+const removeProducts = (productId) => {
+
+  const product = inventory.find(item => item.id === productId);
+
+
+  if (!product) {
+    console.log(`Product with id ${productId} not found.`);
+    return;
+  }
+
+
+  let newInventory = [];
+  for (let i = 0; i < inventory.length; i++) {
+    if (inventory[i].id !== productId) {
+      newInventory.push(inventory[i]);
+    }
+  }
+
+  inventory = newInventory;
+  console.log(`Product ${product.name} removed successfully.`);
+};
+
+
+
+//Updatestock
+const updateStock = (productId, change) => {
+  const product = inventory.find(item => item.id === productId);
+
+  if (!product) {
+    console.log(`Product with id ${productId} not found.`);
+    return;
+  }
+
+  product.quantity += change;
+
+  if (product.quantity < 0) {
+    product.quantity = 0;
+  }
+
+  console.log(
+    `Stock updated for ${product.name}. New quantity: ${product.quantity}`
+  );
+};
+
+
+
+// Test code
+
+console.log("Initial Inventory:");
+console.log(inventory);
+
+// Remove a product
+removeProducts(2);
+console.log("Inventory after removing product 2 (Mouse):");
+console.log(inventory);
+
+// Update stock
+updateStock(3, -50);
+console.log("Inventory after updating product 3 (Keyboard):");
+console.log(inventory);
+
+updateStock(1, 20);
+console.log("Inventory after updating product 1 (Laptop):");
+console.log(inventory);
