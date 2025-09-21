@@ -19,13 +19,11 @@ let inventory = [
 
 console.log("-------- Adding products to cart ---------");
 console.log(" ");
- 
-// Function to add by Mariam
 
 
 const addProducts = (id, name, price, quantity) => {
   let product = inventory.find(function (item) {
-    return item.id === id;
+    return item.name === name;
   });
   if (product) {
     product.quantity += quantity;
@@ -49,14 +47,14 @@ console.log(" ");
 
 
 
-console.log("---------- Removing products from the cart ---------");
+console.log("-------- Removing products from cart ------");
 console.log(" ");
  
 const removeProducts = (productName) => {
-  const product = inventory.find(item => item.name === productname);
+  const product = inventory.find(item => item.name === productName);
  
   if (!product) {
-    console.log(`Product with id ${productName} not found.`);
+    console.log(`Product with name ${productName} not found.`);
     return;
   }
   let newInventory = [];
@@ -85,186 +83,85 @@ console.log(" ");
 
 
 
+console.log("------- Updating Stock --------");
+console.log(" ");
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Function to remove products
-function removeProducts(id, name, price, quantity) {
-  let product = inventory.find(function (item) {
-    return item.id === id;
-  });
-  if (!product) {
-    console.log("Product is not in inventory");
-  } else {
-    if (product.quantity < quantity) {
-      console.log("Not enough stock to remove!");
-    } else {
-      product.quantity -= quantity;
-      console.log(quantity, "units deducted from", product.name);
-    }
-  }
-}
-
-removeProducts();
-
-
-
-
-// stock update.
-
-const updateStock = (id, changeInQuantity) => {
-  // looping through the list of my array
+const updateStock = (name, changeInQuantity) => {
   for (let i = 0; i < inventory.length; i++) {
-    if (inventory[i].id === id) {
-      let oldquantity = inventory[i].quantity
-      inventory[i].quantity += changeInQuantity
-      let newquantity = inventory[i].quantity
-      // if(inventory[i].quantity <= 50){
-      // i will be taking this out..there's no need for this.
-      if (newquantity <= 50) {
-        console.log(inventory[i].name + " " + "needs to be restocked")
-        // return(inventory[i])
-      } else {
-        console.log(inventory[i].name + " " + "has enough quantity")
-        // return(inventory[i])
+    let allInventory = inventory[i]
+    if (allInventory.name === name) {
+      // preventing negative stock
+      if (allInventory.quantity + changeInQuantity < 1) {
+        console.log(`Error: Not enough stock to remove that amount from ${name}. Current quantity is: ${allInventory.quantity}`);
+        return;
       }
-      return {
-        id: inventory[i].id,
-        name: inventory[i].name,
-        oldstock: oldquantity,
-        newstock: newquantity
-      }
-    }
-  }
-  console.log("product not found")
-  return null
-}
-console.log(updateStock(1, -9))
-console.table(updateStock(4, -5))
-console.log(updateStock(8, 3))
-
-
-
-
-
-// Remove Product
-
-const removeProducts = (productId) => {
-
-  const product = inventory.find(item => item.id === productId);
-
-
-  if (!product) {
-    console.log(`Product with id ${productId} not found.`);
-    return;
-  }
-
-
-  let newInventory = [];
-  for (let i = 0; i < inventory.length; i++) {
-    if (inventory[i].id !== productId) {
-      newInventory.push(inventory[i]);
-    }
-  }
-
-  inventory = newInventory;
-  console.log(`Product ${product.name} removed successfully.`);
-};
-
-
-
-//Updatestock
-const updateStock = (productId, change) => {
-  const product = inventory.find(item => item.id === productId);
-
-  if (!product) {
-    console.log(`Product with id ${productId} not found.`);
-    return;
-  }
-
-  product.quantity += change;
-
-  if (product.quantity < 0) {
-    product.quantity = 0;
-  }
-
-  console.log(
-    `Stock updated for ${product.name}. New quantity: ${product.quantity}`
-  );
-};
-
-
-
-// Test code
-
-console.log("Initial Inventory:");
-console.log(inventory);
-
-// Remove a product
-removeProducts(2);
-console.log("Inventory after removing product 2 (Mouse):");
-console.log(inventory);
-
-// Update stock
-updateStock(3, -50);
-console.log("Inventory after updating product 3 (Keyboard):");
-console.log(inventory);
-
-updateStock(1, 20);
-console.log("Inventory after updating product 1 (Laptop):");
-
-
-
-
-
-
-
-// blessing
-
- 
- 
-//Update stock by product id
-const updateStock = (id, changeInQuantity) => {
-  for (let i = 0; i < inventory.length; i++) {
-    if (inventory[i].id === id) {
-      // prevent negative stock
-      if (inventory[i].quantity + changeInQuantity < 0) {
-        console.log("Error: Not enough stock to remove that amount.");
-        return null; // null = update failed
-      }
-      // update quantity
+      // updating quantity
       inventory[i].quantity += changeInQuantity;
-      console.log(
-        `Stock updated: ${inventory[i].name} now has ${inventory[i].quantity} units.`
-      );
-      return inventory[i]; // return the updated product object
+      console.log(`Stock updated: ${inventory[i].name} added ${changeInQuantity} units and now has ${inventory[i].quantity} units in total.`);
+      return allInventory; // return the updated product object
     }
   }
   console.log("Error: Product not found.");
-  return null; // null = product not found
+  return ; 
 };
- 
-let updated = updateStock(1, -10);
-console.log(updated);
-// { id: 1, name: "Laptop", price: 1200, quantity: 40 }
- 
-let updated2 = updateStock(2, 50);
-console.log(updated2);
-// { id: 2, name: "Mouse", price: 25, quantity: 250 }
- 
-let failCase = updateStock(14, -30);
-// Logs error + returns null
+
+
+updateStock("Microphone", 50);
+updateStock("Dress", 100);
+updateStock("Webcam", -30);
+updateStock("Printer", -140);
+updateStock("CPU", 20);
+console.log("Inventory after updating product", inventory);
+console.log(" ");
+console.log(" ");
+
+
+console.log("------- Generating Inventory report --------");
+console.log(" ");
+
+const generateReport = () => {
+  let totalValue = 0;
+
+  function getStatus(item) {
+    if (item.quantity === 0) {
+      return "OUT OF STOCK";
+    } else if (item.quantity <= 20) {
+      return "LOW";
+    } else if (item.quantity <= 50) {
+      return "MEDIUM";
+    } else {
+      return "HIGH";
+    }
+  }
+
+  // Group all products
+  let grouped = {
+    HIGH: [],
+    MEDIUM: [],
+    LOW: [],
+    "OUT OF STOCK": []
+  };
+
+  inventory.forEach(product => {
+    let status = getStatus(product);
+    product.status = status;
+    totalValue += product.price * product.quantity;
+
+    grouped[status].push(product.name);
+  });
+
+  
+  console.log(`- Total Products: ${inventory.length}`);
+  console.log(`- Total Inventory Value: $${totalValue}`);
+
+  for (let status in grouped) {
+    console.log(` Stock Status ${status}: ${grouped[status].length} items -> ${grouped[status].join(", ") || "None"}`);
+  }
+};
+
+generateReport();
+
+// Example filters
+console.log("Only LOW stock items:", inventory.filter(item => item.status === "LOW"));
+console.log("Only HIGH stock items:", inventory.filter(item => item.status === "HIGH"));
