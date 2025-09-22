@@ -35,12 +35,12 @@ const addProducts = (id, name, price, quantity) => {
   }
 }
 
-addProducts(16, "External Power Supply", 290, 50)
-addProducts(17, "Web Hosting Plan", 20, 300)
-addProducts(18, "64GB RAM", 90, 30)
-addProducts(3, "keyboard", 75, 250)
-addProducts(6, "Headphones", 90, 100)
-console.log(inventory, 'After Additions')
+addProducts(16, "External Power Supply", 290, 50);
+addProducts(17, "Web Hosting Plan", 20, 300);
+addProducts(18, "64GB RAM", 90, 30);
+addProducts(3, "Keyboard", 75, 250);
+addProducts(6, "Headphones", 90, 100);
+console.log(inventory, 'After Additions');
 console.log(" ");
 console.log(" ");
 
@@ -72,10 +72,10 @@ const removeProducts = (productName) => {
  
 console.log("Initial Inventory:", inventory);
 removeProducts("Speaker");
-removeProducts("Router", 20);
-removeProducts("Laptop", 30);
+removeProducts("Router");
+removeProducts("Laptop");
 removeProducts("Dress");
-removeProducts("Monitor", 60);
+removeProducts("Monitor");
 console.log("Inventory after removing products:", inventory);
  
 console.log(" ");
