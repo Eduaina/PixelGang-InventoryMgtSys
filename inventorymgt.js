@@ -162,6 +162,5 @@ const generateReport = () => {
 
 generateReport();
 
-// Example filters
 console.log("Only LOW stock items:", inventory.filter(item => item.status === "LOW"));
 console.log("Only HIGH stock items:", inventory.filter(item => item.status === "HIGH"));
