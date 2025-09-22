@@ -38,7 +38,7 @@ const addProducts = (id, name, price, quantity) => {
 addProducts(16, "External Power Supply", 290, 50)
 addProducts(17, "Web Hosting Plan", 20, 300)
 addProducts(18, "64GB RAM", 90, 30)
-addProducts(3, "keyboard", 75, 250)
+addProducts(3, "Keyboard", 75, 250)
 addProducts(6, "Headphones", 90, 100)
 console.log(inventory, 'After Additions')
 console.log(" ");
